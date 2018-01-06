@@ -13,7 +13,29 @@ void setup() {
 void loop() {
   if (irrecv.decode(&results)) {
     // отображаем значение от ИК-пульта
-    Serial.println(results.value);
+    //Serial.println(results.value);
+
+    // Serial.println(results.value);
+
+    // "вверх"
+    if (results.value == 3772778233) {
+      Serial.println("Оба вперед");
+    }
+
+    // "вниз"
+    if (results.value == 3772810873) {
+      Serial.println("Оба назад");
+    }
+
+    // "влево"
+    if (results.value == 3772819033) {
+      Serial.println("Левый назад, Правый вперед");
+    }
+
+    // "вправо"
+    if (results.value == 3772794553) {
+      Serial.println("Правый назад, Левый вперед");
+    }
 
     // ждем следующее значение
     irrecv.resume();
