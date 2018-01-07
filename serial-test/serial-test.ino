@@ -12,10 +12,12 @@ void setup() {
 
 void loop() {
   if (irrecv.decode(&results)) {
-    // отображаем значение от ИК-пульта
-    //Serial.println(results.value);
+    Serial.println(results.value);
 
-    // Serial.println(results.value);
+    // "центр"
+    if (results.value == 3772782313) {
+      Serial.println("Стоп");
+    }
 
     // "вверх"
     if (results.value == 3772778233) {
