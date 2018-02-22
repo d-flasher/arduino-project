@@ -5,6 +5,8 @@
 // создаём объект для управления сервоприводом
 Servo myServoL;
 Servo myServoR;
+int SERVO_L_PIN = 6;
+int SERVO_R_PIN = 8;
 
 // даем имя пину подключения ИК приёмника
 int RECV_PIN = 2;
@@ -18,8 +20,8 @@ void setup()
   // запускаем работу ИК приемника
   irrecv.enableIRIn();
   // подключаем сервоприводы
-  //  myServoL.attach(4);
-  //  myServoR.attach(8);
+  //  myServoL.attach(SERVO_L_PIN);
+  //  myServoR.attach(SERVO_R_PIN);
 }
 
 void loop()
@@ -49,28 +51,28 @@ void loop()
 // функция движение вперёд
 void ford() {
   attach();
-  myServoL.write(110);
+  myServoL.write(70);
   myServoR.write(110);
 }
 
 // функция движение назад
 void back() {
   attach();
-  myServoL.write(70);
-  myServoR.write(40);
+  myServoL.write(110);
+  myServoR.write(70);
 }
 
 // функция поворота налево
 void left() {
   attach();
-  myServoL.write(110);
-  myServoR.write(70);
+  myServoL.write(70);
+  myServoR.detach();
 }
 
 // функция поворота направо
 void right() {
   attach();
-  myServoL.write(70);
+  myServoL.detach();
   myServoR.write(110);
 }
 
@@ -84,11 +86,11 @@ void stop() {
 
 void attach() {
   if (!myServoL.attached()) {
-    myServoL.attach(4);
+    myServoL.attach(SERVO_L_PIN);
   }
 
   if (!myServoR.attached()) {
-    myServoR.attach(8);
+    myServoR.attach(SERVO_R_PIN);
   }
 }
 
